@@ -100,3 +100,51 @@ function Player(name, symbol, type) {
 
     return { getName, getSymbol, getType };
 }
+
+const ScreenController = (() => {
+    function updateBoard() {
+        document.querySelectorAll('.cell').forEach((e, i) => {
+            e.textContent = GameBoard.getBoard()[i];
+        });
+    }
+
+    function _closeModal() {
+        document.querySelector('.victory').style.display = 'none';
+        document.querySelector('.draw').style.display = 'none';
+    }
+
+    function showVictory() {
+        const victory = document.querySelector('.victory');
+        document.querySelector(
+          ".victory > h2"
+        ).textContent = `Player ${GameController.getActivePlayer().getName()} won!`;
+        document.querySelector(".victory > h3").textContent =
+          GameController.getActivePlayer().getSymbol();
+        victory.style.display = 'flex';
+        victory.addEventListener('click', _closeModal);
+        setTimeout(_closeModal, 5000);
+    }
+    
+    function showDraw() {
+        const draw = document.querySelector(".draw");
+        draw.style.display = "flex";
+        draw.addEventListener("click", _closeModal);
+        setTimeout(_closeModal, 5000);
+    }
+
+    return { updateBoard, showVictory, showDraw };
+})();
+
+document.querySelectorAll('.cell').forEach(e => e.addEventListener('click', () => {
+    const result = GameController.playTurn(e.dataset.cell);
+    ScreenController.updateBoard();
+    if (result === 'win') {
+        ScreenController.showVictory();
+        GameController.initGame();
+        ScreenController.updateBoard();
+    } else if (result === 'draw') {
+        ScreenController.showDraw();
+        GameController.initGame();
+        ScreenController.updateBoard();
+    }
+}));
