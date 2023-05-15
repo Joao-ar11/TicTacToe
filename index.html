@@ -11,6 +11,45 @@
 <body>
     <div class="container">
         <h1>Tic Tac Toe</h1>
+        <div class="players">
+            <div class="player1">
+                <h2>Player 1: X</h2>
+                <img src="./img/player.svg" alt="Human Player image">
+                <div class="player-type" data-select="human">
+                    <button id="human1" class="choice human">Player</button>
+                    <button id="cpu1" class="choice cpu">CPU</button>
+                </div>
+                <div class="name">
+                    <label for="name1">Name: </label>
+                    <input type="text" id="name1">
+                </div>
+                <select name="difficulty1" id="difficulty1">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <div class="player2">
+                <h2>Player 2: O</h2>
+                <img src="./img/player.svg" alt="Human Player image">
+                <div class="player-type" data-select="human">
+                    <button id="human2" class="choice human">Player</button>
+                    <button id="cpu2" class="choice cpu">CPU</button>
+                </div>
+                <div class="name">
+                    <label for="name2">Name: </label>
+                    <input type="text" id="name2">
+                </div>
+                <select name="difficulty2" id="difficulty2">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <div>
+                <button type="button" class="play">PLAY</button>
+            </div>
+        </div>
         <div class="board">
             <div class="cell" data-cell="0"></div>
             <div class="cell" data-cell="1"></div>

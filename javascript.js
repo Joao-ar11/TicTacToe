@@ -126,14 +126,55 @@ const ScreenController = (() => {
     }
     
     function showDraw() {
-        const draw = document.querySelector(".draw");
-        draw.style.display = "flex";
+        const draw = document.querySelector('.draw');
+        draw.style.display = 'flex';
         draw.addEventListener("click", _closeModal);
         setTimeout(_closeModal, 5000);
     }
 
     return { updateBoard, showVictory, showDraw };
 })();
+
+document.querySelectorAll('.human').forEach((e, i) => {
+    e.addEventListener('click', () => {
+        e.style.borderWidth = '3px';
+        e.style.boxShadow = '0 0 3px black';
+        document.querySelector(`.player${i + 1} .player-type`).dataset.select = 'human';
+        const oppositeButton = document.querySelector(`#cpu${i + 1}`);
+        oppositeButton.style.borderWidth = '2px';
+        oppositeButton.style.boxShadow = '0 0 0 black';
+        document.querySelector(`.player${i + 1} img`).src = './img/player.svg';
+        document.querySelector(`#difficulty${i + 1}`).style.display = 'none';
+        document.querySelector(`.player${i + 1} .name`).style.display = 'block';
+    });
+});
+
+document.querySelectorAll('.cpu').forEach((e, i) => {
+    e.addEventListener('click', () => {
+        e.style.borderWidth = '3px';
+        e.style.boxShadow = '0 0 3px black';
+        document.querySelector(`.player${i + 1} .player-type`).dataset.select = 'cpu';
+        const oppositeButton = document.querySelector(`#human${i + 1}`);
+        oppositeButton.style.borderWidth = '2px';
+        oppositeButton.style.boxShadow = '0 0 0 black';
+        document.querySelector(`.player${i + 1} img`).src = './img/cpu.svg';
+        document.querySelector(`.player${i + 1} .name`).style.display = 'none';
+        document.querySelector(`#difficulty${i + 1}`).style.display = 'block';
+    });
+});
+
+document.querySelector('.play').addEventListener('click', () => {
+    const players = [];
+    for (let i = 1; i < 3; i++) {
+        const type = document.querySelector(`.player${i} .player-type`).dataset.select;
+        const name = type === 'cpu' ? `CPU${i}` : document.querySelector(`#name${i}`).value;
+        const symbol = i === 1 ? 'X' : 'O';
+        players[i - 1] = Player(name, symbol, type); 
+    }
+    document.querySelector('.players').style.display = 'none';
+    document.querySelector('.board').style.display = 'grid';
+    GameController.initGame(players[0], players[1]);
+});
 
 document.querySelectorAll('.cell').forEach(e => e.addEventListener('click', () => {
     const result = GameController.playTurn(e.dataset.cell);
