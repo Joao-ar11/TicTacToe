@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.board {
+    margin: 0 auto;
+    height: 500px;
+    width: 500px;
+    background-color: darkslateblue;
+    text-align: center;
+    color: white;
+    font-size: 120px;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.cell {
+    cursor: pointer;
+    border: 2px solid black;
+}
