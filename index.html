@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <script src="./javascript.js" defer></script>
     <title>Tic Tac Toe</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Tic Tac Toe</h1>
-        <div class="players">
-            <div class="player1">
-                <h2>Player 1: X</h2>
-                <img src="./img/player.svg" alt="Human Player image">
-                <div class="player-type" data-select="human">
-                    <button id="human1" class="choice human">Player</button>
-                    <button id="cpu1" class="choice cpu">CPU</button>
-                </div>
-                <div class="name">
-                    <label for="name1">Name: </label>
-                    <input type="text" id="name1">
-                </div>
-                <select name="difficulty1" id="difficulty1">
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                </select>
-            </div>
-            <div class="player2">
-                <h2>Player 2: O</h2>
-                <img src="./img/player.svg" alt="Human Player image">
-                <div class="player-type" data-select="human">
-                    <button id="human2" class="choice human">Player</button>
-                    <button id="cpu2" class="choice cpu">CPU</button>
-                </div>
-                <div class="name">
-                    <label for="name2">Name: </label>
-                    <input type="text" id="name2">
-                </div>
-                <select name="difficulty2" id="difficulty2">
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                </select>
-            </div>
-            <div>
-                <button type="button" class="play">PLAY</button>
-            </div>
+      <h1>Tic Tac Toe</h1>
+      <div class="players">
+        <div class="player1">
+          <h2>Player 1: X</h2>
+          <img src="./img/player.svg" alt="Human Player image" />
+          <div class="player-type" data-select="human">
+            <button id="human1" class="choice human">Player</button>
+            <button id="cpu1" class="choice cpu">CPU</button>
+          </div>
+          <div class="name">
+            <label for="name1">Name: </label>
+            <input type="text" id="name1" />
+          </div>
+          <select name="difficulty1" id="difficulty1">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
         </div>
-        <div class="board">
-            <div class="cell" data-cell="0"></div>
-            <div class="cell" data-cell="1"></div>
-            <div class="cell" data-cell="2"></div>
-            <div class="cell" data-cell="3"></div>
-            <div class="cell" data-cell="4"></div>
-            <div class="cell" data-cell="5"></div>
-            <div class="cell" data-cell="6"></div>
-            <div class="cell" data-cell="7"></div>
-            <div class="cell" data-cell="8"></div>
+        <div class="player2">
+          <h2>Player 2: O</h2>
+          <img src="./img/player.svg" alt="Human Player image" />
+          <div class="player-type" data-select="human">
+            <button id="human2" class="choice human">Player</button>
+            <button id="cpu2" class="choice cpu">CPU</button>
+          </div>
+          <div class="name">
+            <label for="name2">Name: </label>
+            <input type="text" id="name2" />
+          </div>
+          <select name="difficulty2" id="difficulty2">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
         </div>
-        <div class="victory">
-            <h2></h2>
-            <h3></h3>
+        <div>
+          <button type="button" class="play">PLAY</button>
         </div>
-    
-        <div class="draw">
-            <h2>It's a Draw!</h2>
-        </div>
+      </div>
+      <div class="board">
+        <div class="cell" data-cell="0"></div>
+        <div class="cell" data-cell="1"></div>
+        <div class="cell" data-cell="2"></div>
+        <div class="cell" data-cell="3"></div>
+        <div class="cell" data-cell="4"></div>
+        <div class="cell" data-cell="5"></div>
+        <div class="cell" data-cell="6"></div>
+        <div class="cell" data-cell="7"></div>
+        <div class="cell" data-cell="8"></div>
+      </div>
+      <div class="victory">
+        <h2></h2>
+        <h3></h3>
+      </div>
+
+      <div class="draw">
+        <h2>It's a Draw!</h2>
+      </div>
     </div>
-</body>
+  </body>
 </html>

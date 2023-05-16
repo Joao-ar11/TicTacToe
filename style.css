@@ -1,145 +1,150 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 18px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 18px;
 }
 
 .container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
-    margin: 10px 0 30px 0;
+  margin: 10px 0 30px 0;
 }
 
 .players {
-    display: grid;
-    gap: 50px 100px;
-    grid-template-columns: 350px 350px;
-    grid-template-rows: 420px 80px;
+  display: grid;
+  gap: 50px 100px;
+  grid-template-columns: 350px 350px;
+  grid-template-rows: 420px 80px;
 }
 
-.player1, .player2 {
-    padding: 10px;
-    height: 450px;
-    width: 350px;
-    border-radius: 20px;
-    box-shadow: 0 0 5px black;
+.player1,
+.player2 {
+  padding: 10px;
+  height: 450px;
+  width: 350px;
+  border-radius: 20px;
+  box-shadow: 0 0 5px black;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .players img {
-    height: 250px;
-    width: 250px;
-    border-radius: 10px;
-    box-shadow: 0 0 3px black;
+  height: 250px;
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 0 3px black;
 }
 
 .choice {
-    cursor: pointer;
-    margin: 10px;
-    height: 50px;
-    width: 100px;
-    background-color: white;
-    font-size: 1.5rem;
-    border: 2px solid black;
-    border-radius: 15px;
+  cursor: pointer;
+  margin: 10px;
+  height: 50px;
+  width: 100px;
+  background-color: white;
+  font-size: 1.5rem;
+  border: 2px solid black;
+  border-radius: 15px;
 }
 
 .human {
-    border: 3px solid black;
-    box-shadow: 0 0 3px black;
+  border: 3px solid black;
+  box-shadow: 0 0 3px black;
 }
 
 input {
-    height: 30px;
-    padding-left: 5px;
-    font-size: 1rem;
+  height: 30px;
+  padding-left: 5px;
+  font-size: 1rem;
 }
 
-#difficulty1, #difficulty2 {
-    display: none;
-    height: 1.5rem;
-    width: 100px;
+#difficulty1,
+#difficulty2 {
+  display: none;
+  height: 1.5rem;
+  width: 100px;
 }
 
 .players div:nth-child(3) {
-    grid-column: 1 / 3;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  grid-column: 1 / 3;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .play {
-    cursor: pointer;
-    height: 60px;
-    width: 200px;
-    font-size: 2.5rem;
-    background-color: darkslateblue;
-    color: white;
-    border: none;
-    border-radius: 15px;
+  cursor: pointer;
+  height: 60px;
+  width: 200px;
+  font-size: 2.5rem;
+  background-color: darkslateblue;
+  color: white;
+  border: none;
+  border-radius: 15px;
 }
 
 .play:hover {
-    background-color: #685dab;
-    height: 70px;
-    width: 210px;
+  background-color: #685dab;
+  height: 70px;
+  width: 210px;
 }
 
 .play:active {
-    background-color: #281d6b;
+  background-color: #281d6b;
 }
 
 .board {
-    margin: 0 auto;
-    height: 500px;
-    width: 500px;
-    box-shadow: 0 0 4px black;
-    background-color: darkslateblue;
-    text-align: center;
-    color: white;
-    font-size: 120px;
-    display: none;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
+  height: 500px;
+  width: 500px;
+  box-shadow: 0 0 4px black;
+  background-color: darkslateblue;
+  text-align: center;
+  color: white;
+  font-size: 120px;
+  display: none;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .cell {
-    cursor: pointer;
-    border: 2px solid black;
+  cursor: pointer;
+  border: 2px solid black;
 }
 
-.victory, .draw {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, .5);
-    color: white;
-    
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.victory,
+.draw {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.victory h2, .draw h2 {
-    font-size: 2rem;
+.victory h2,
+.draw h2 {
+  font-size: 2rem;
 }
 
 h3 {
-    font-size: 3rem;
+  font-size: 3rem;
 }
