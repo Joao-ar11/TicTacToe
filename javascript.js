@@ -346,11 +346,13 @@ document.querySelectorAll(".human").forEach((e, i) => {
     document.querySelector(`.player${i + 1} img`).src = "./img/player.svg";
     document.querySelector(`#difficulty${i + 1}`).style.display = "none";
     document.querySelector(`.player${i + 1} .name`).style.display = "block";
+    document.querySelectorAll(`.cpu`)[i === 0 ? 1 : 0].dataset.lock = 'unlocked'
   });
 });
 
 document.querySelectorAll(".cpu").forEach((e, i) => {
   e.addEventListener("click", () => {
+    if (e.dataset.lock === 'locked') return null;
     e.style.borderWidth = "3px";
     e.style.boxShadow = "0 0 3px black";
     document.querySelector(`.player${i + 1} .player-type`).dataset.select =
@@ -360,7 +362,9 @@ document.querySelectorAll(".cpu").forEach((e, i) => {
     oppositeButton.style.boxShadow = "0 0 0 black";
     document.querySelector(`.player${i + 1} img`).src = "./img/cpu.svg";
     document.querySelector(`.player${i + 1} .name`).style.display = "none";
-    document.querySelector(`#difficulty${i + 1}`).style.display = "block";  
+    document.querySelector(`#difficulty${i + 1}`).style.display = "block";
+    document.querySelectorAll(`.cpu`)[i === 0 ? 1 : 0].dataset.lock = "locked";
+    return null;  
   });
 });
 
