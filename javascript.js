@@ -132,7 +132,12 @@ const ScreenController = (() => {
         setTimeout(_closeModal, 5000);
     }
 
-    return { updateBoard, showVictory, showDraw };
+    function startScreen() {
+        document.querySelector('.board').style.display = 'none';
+        document.querySelector('.players').style.display = 'grid';
+    }
+
+    return { updateBoard, showVictory, showDraw, startScreen };
 })();
 
 document.querySelectorAll('.human').forEach((e, i) => {
@@ -181,11 +186,9 @@ document.querySelectorAll('.cell').forEach(e => e.addEventListener('click', () =
     ScreenController.updateBoard();
     if (result === 'win') {
         ScreenController.showVictory();
-        GameController.initGame();
-        ScreenController.updateBoard();
+        setTimeout(ScreenController.startScreen, 3000);
     } else if (result === 'draw') {
         ScreenController.showDraw();
-        GameController.initGame();
-        ScreenController.updateBoard();
+        setTimeout(ScreenController.startScreen, 3000);
     }
 }));
