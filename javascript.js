@@ -2,7 +2,7 @@ const GameBoard = (() => {
   const _board = [];
 
   function getBoard() {
-    return _board;
+    return [..._board];
   }
 
   function initBoard() {
@@ -93,7 +93,7 @@ const GameController = (() => {
     _activePlayer = player1;
     GameBoard.initBoard();
     ScreenController.updateBoard();
-    if (_activePlayer.type !== 'human') return 'ai';
+    if (_activePlayer.getType() !== 'human') return 'ai';
     return null;
   }
 
@@ -101,9 +101,8 @@ const GameController = (() => {
     _activePlayer = _activePlayer === _player1 ? _player2 : _player1;
   }
 
-  function _checkWin() {
-    const board = GameBoard.getBoard();
-    const symbol = _activePlayer.getSymbol();
+  function checkWin(board) {
+    let symbol = _activePlayer.getSymbol();
     for (let i = 0; i < 3; i++) {
       if (
         board[i * 3] === symbol &&
@@ -128,6 +127,31 @@ const GameController = (() => {
     ) {
       return "win";
     }
+    symbol = symbol === 'X' ? 'O' : 'X';
+    for (let i = 0; i < 3; i++) {
+      if (
+        board[i * 3] === symbol &&
+        board[i * 3 + 1] === symbol &&
+        board[i * 3 + 2] === symbol
+      ) {
+        return "lose";
+      }
+    }
+    for (let i = 0; i < 3; i++) {
+      if (
+        board[i] === symbol &&
+        board[i + 3] === symbol &&
+        board[i + 6] === symbol
+      ) {
+        return "lose";
+      }
+    }
+    if (
+      (board[0] === symbol && board[4] === symbol && board[8] === symbol) ||
+      (board[2] === symbol && board[4] === symbol && board[6] === symbol)
+    ) {
+      return "lose";
+    }
     if (!GameBoard.getBoard().includes(" ")) return "draw";
     return "continue";
   }
@@ -135,7 +159,7 @@ const GameController = (() => {
   function playTurn(slot) {
     if (!GameBoard.placeSymbol(_activePlayer.getSymbol(), slot))
       return "failed";
-    const result = _checkWin();
+    const result = checkWin(GameBoard.getBoard());
     if (result === "win") {
       ScreenController.showVictory(_activePlayer);
       setTimeout(ScreenController.startScreen, 1000);
@@ -151,7 +175,7 @@ const GameController = (() => {
     return "continue";
   }
 
-  return { getActivePlayer, initGame, playTurn };
+  return { getActivePlayer, initGame, playTurn, checkWin };
 })();
 
 const Ai = (() => {
@@ -245,14 +269,6 @@ const Ai = (() => {
       GameController.playTurn(2);
       return null;
     }
-    easy();
-    return null;
-  }
-
-  function hard() {
-    const board = GameBoard.getBoard();
-    const symbol =
-      GameController.getActivePlayer().getSymbol() === "X" ? "O" : "X";
     for (let i = 0; i < 3; i++) {
       if (
         board[i * 3] === symbol &&
@@ -327,8 +343,39 @@ const Ai = (() => {
       GameController.playTurn(2);
       return null;
     }
-    medium();
+    easy();
     return null;
+  }
+
+  function _minimax(board, symbol) {
+    const newBoard = [...board];
+    const end = GameController.checkWin(newBoard);
+    if (end !== 'continue') {
+      return end === 'draw' ? 0 : end === 'win' ? 10 : -10;
+    }
+    let score = 0;
+    for (let i = 0; i < newBoard.length; i++) {
+      if (newBoard[i] === ' ') {
+        newBoard[i] = symbol;
+        score += _minimax(newBoard, symbol === 'X' ? 'O' : 'X');
+      }
+    }
+    return score;
+  }
+
+  function hard() {
+    const board = GameBoard.getBoard();
+    const symbol = GameController.getActivePlayer().getSymbol();
+    let bestMove = null; 
+    for (let i = 0; i < board.length; i++) {
+      if (board[i] === ' ') {
+        const newBoard = [...board];
+        newBoard[i] = symbol;
+        const score = _minimax(newBoard, symbol);
+        if (bestMove === null || score > bestMove[1]) bestMove = [i, score];
+      }
+    }
+    GameController.playTurn(bestMove[0]);
   }
 
   return { easy, medium, hard };
