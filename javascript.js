@@ -347,6 +347,7 @@ const Ai = (() => {
     return null;
   }
 
+  //_minimax failed
   function _minimax(board, symbol) {
     const newBoard = [...board];
     const end = GameController.checkWin(newBoard);
